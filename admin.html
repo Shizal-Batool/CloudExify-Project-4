@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Shiznia Roasters</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg sticky-top bg-dark">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand text-warning" href="#">Shiznia Roasters Admin</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="adminNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item me-3">
+            <a class="nav-link" href="#ordersSection">Orders</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link" href="#menuSection">Menu Manager</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link text-primary" href="index.html">View Site</a>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-sm btn-outline-danger" id="logoutBtn" onclick="handleLogout()">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid px-4 py-4">
+    <!-- Stats Row -->
+    <div class="row mb-5">
+      <div class="col-12 col-sm-6 col-lg-3 mb-3">
+        <div class="card stat-card shadow-sm h-100 border-primary">
+          <div class="card-body">
+            <h5 class="card-title text-muted">Total Orders</h5>
+            <h2 id="statTotalOrders" class="text-light">-</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3 mb-3">
+        <div class="card stat-card shadow-sm h-100 border-success">
+          <div class="card-body">
+            <h5 class="card-title text-muted fw-normal">Total Revenue</h5>
+            <h2 id="statTotalRevenue" class="text-light">Rs. 0.00</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3 mb-3">
+        <div class="card stat-card shadow-sm h-100 border-warning">
+          <div class="card-body">
+            <h5 class="card-title text-muted">Pending Orders</h5>
+            <h2 id="statPendingOrders" class="text-light">-</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-3 mb-3">
+        <div class="card stat-card shadow-sm h-100 border-info">
+          <div class="card-body">
+            <h5 class="card-title text-muted">Total Menu Items</h5>
+            <h2 id="statTotalMenu" class="text-light">-</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orders Section -->
+    <section id="ordersSection" class="mb-5">
+      <h3 class="mb-4 pb-2 border-bottom border-secondary text-primary">Live Orders</h3>
+      <div class="card border-secondary bg-dark">
+        <div class="card-body p-0 table-responsive">
+          <table class="table table-dark table-hover mb-0">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Details</th>
+                <th>Time</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="adminOrdersTable">
+              <!-- Rendered by admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Management Section -->
+    <section id="menuSection" class="mb-5">
+      <h3 class="mb-4 pb-2 border-bottom border-secondary text-primary">Menu Management</h3>
+      
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="card bg-card border-secondary shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title mb-3">Add New Item</h5>
+              <form id="addMenuForm">
+                <div class="mb-3">
+                  <label class="form-label text-muted small">Name</label>
+                  <input type="text" class="form-control form-control-sm" id="menuName" required>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-6">
+                    <label class="form-label text-muted small">Price</label>
+                    <input type="number" step="0.01" class="form-control form-control-sm" id="menuPrice" required>
+                  </div>
+                  <div class="col-6">
+                    <label class="form-label text-muted small">Category</label>
+                    <select class="form-select form-select-sm" id="menuCategory" required>
+                      <option value="Savory Snacks">Savory Snacks</option>
+                  <option value="Sweets">Sweets</option>
+                  <option value="Breads">Breads</option>
+                  <option value="Chai & Drinks">Chai & Drinks</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-muted small">Image URL</label>
+                  <input type="url" class="form-control form-control-sm" id="menuImage" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-muted small">Description</label>
+                  <textarea class="form-control form-control-sm" id="menuDescription" rows="2"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm w-100">Add Item</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-8">
+          <div class="card bg-dark border-secondary shadow-sm">
+            <div class="card-body p-0 table-responsive">
+              <table class="table table-dark table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Available</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="adminMenuTable">
+                  <!-- Rendered by admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+  <!-- admin.js must load last because it calls requireAdmin() -->
+  <script src="js/admin.js"></script>
+</body>
+</html>

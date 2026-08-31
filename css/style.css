@@ -1,0 +1,218 @@
+:root {
+  --primary-color: #d2691e; /* Caramel/Chocolate */
+  --bg-dark: #fbf8f1; /* Soft Cream */
+  --bg-card: #ffffff; /* White card */
+  --text-light: #4e342e; /* Dark Espresso */
+  --text-muted: #795548; /* Soft Brown */
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+  font-family: 'Playfair Display', serif;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0d4c8;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  color: var(--text-light) !important;
+  transition: color 0.3s;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: var(--primary-color) !important;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #b85b1a;
+  border-color: #b85b1a;
+  color: #fff;
+}
+
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid #e0d4c8;
+  color: var(--text-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border-radius: 12px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #e0d4c8;
+}
+
+.category-filter .btn {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 20px;
+}
+
+/* Offcanvas Cart */
+.offcanvas {
+  background-color: var(--bg-card);
+  color: var(--text-light);
+  border-left: 1px solid #e0d4c8;
+}
+
+.offcanvas-header {
+  border-bottom: 1px solid #e0d4c8;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0d4c8;
+  padding: 1rem 0;
+}
+
+.cart-item-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+
+/* Admin Dashboard */
+.stat-card {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-radius: 12px;
+}
+
+.stat-card h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.table {
+  color: var(--text-light);
+}
+
+.table th, .table td {
+  border-color: #e0d4c8;
+  vertical-align: middle;
+}
+
+.table-dark {
+  background-color: #f9f4ea !important;
+  color: var(--text-light);
+}
+
+.form-control, .form-select {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: var(--text-light);
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: #fff;
+  border-color: var(--primary-color);
+  color: var(--text-light);
+  box-shadow: 0 0 0 0.25rem rgba(210, 105, 30, 0.25);
+}
+
+/* Auth Pages */
+.auth-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: none;
+}
+
+.toast-container {
+  z-index: 1055;
+}
+
+.toast {
+  background-color: var(--bg-card);
+  border: 1px solid var(--primary-color);
+  color: var(--text-light);
+}
+
+.toast-header {
+  background-color: #fbf8f1;
+  color: var(--primary-color);
+  border-bottom: 1px solid #e0d4c8;
+}
+
+/* Override Bootstrap classes that clash with light theme */
+.text-muted {
+  color: var(--text-muted) !important;
+}
+.bg-dark {
+  background-color: #f4ece1 !important;
+}
+.border-secondary {
+  border-color: #e0d4c8 !important;
+}
+.text-bg-primary {
+  background-color: var(--primary-color) !important;
+  color: #fff !important;
+}
+.btn-close-white {
+  filter: none !important; /* Make X buttons black instead of white */
+}
+.navbar-toggler-icon {
+  filter: none !important;
+}
+
+body.is-admin .add-to-cart-btn {
+  display: none !important;
+}

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shiznia Roasters | Freshly Baked</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Shiznia Roasters</a>
+      <button class="navbar-toggler btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#menuSection">Menu</a>
+          </li>
+          
+          <!-- Auth Links (Show when logged out) -->
+          <div id="authLinks" class="d-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="register.html">Register</a>
+            </li>
+          </div>
+          
+          <!-- User Links (Show when logged in) -->
+          <div id="userLinks" class="d-flex align-items-center d-none">
+            <li class="nav-item me-3">
+              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#ordersModal">My Orders</a>
+            </li>
+            <li class="nav-item me-3 d-none" id="adminLinks">
+              <a class="nav-link text-warning" href="admin.html">Admin Dashboard</a>
+            </li>
+            <li class="nav-item me-3">
+              <a class="nav-link text-muted" href="#" id="logoutBtn">Logout</a>
+            </li>
+          </div>
+          
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0" id="cartNavBtn">
+            <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+              Cart <span id="cartBadge" class="badge text-bg-primary ms-1" style="display: none;">0</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="py-5 text-center bg-dark border-bottom border-secondary">
+    <div class="container py-5">
+      <h1 class="display-4 fw-bold">Freshly Baked Every Day</h1>
+      <p class="lead text-muted mb-4">Experience the finest artisanal pastries and coffee.</p>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menuSection" class="py-5 flex-grow-1">
+    <div class="container">
+      
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+        <div class="category-filter">
+          <button class="btn btn-primary btn-sm" data-category="all">All</button>
+          <button class="btn btn-outline-primary btn-sm" data-category="Savory Snacks">Savory Snacks</button>
+          <button class="btn btn-outline-primary btn-sm" data-category="Sweets">Sweets</button>
+          <button class="btn btn-outline-primary btn-sm" data-category="Breads">Breads</button>
+          <button class="btn btn-outline-primary btn-sm" data-category="Chai & Drinks">Chai & Drinks</button>
+        </div>
+        
+        <div class="search-box">
+          <input type="text" id="searchInput" class="form-control" placeholder="Search menu...">
+        </div>
+      </div>
+
+      <div class="row" id="menuGrid">
+        <!-- Rendered by menu.js -->
+      </div>
+    </div>
+  </section>
+  
+  <footer class="py-4 mt-auto border-top border-secondary text-center">
+    <div class="container text-muted">
+      <small>&copy; 2026 Shiznia Roasters. Built for CloudExify Internship.</small>
+    </div>
+  </footer>
+
+  <!-- Cart Offcanvas -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title text-primary" id="cartOffcanvasLabel">Your Cart</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div id="cartBody" class="flex-grow-1 overflow-auto">
+        <!-- Cart items go here -->
+      </div>
+      <div class="mt-4 pt-3 border-top border-secondary">
+        <div class="d-flex justify-content-between mb-3">
+          <h5 class="mb-0">Total</h5>
+          <h5 class="mb-0 text-primary">Rs. <span id="cartTotal">0.00</span></h5>
+        </div>
+        <button type="button" class="btn btn-primary w-100 py-2" data-bs-toggle="modal" data-bs-target="#checkoutModal">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- My Orders Modal -->
+  <div class="modal fade" id="ordersModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content bg-card">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title text-primary">My Order History</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="userOrdersContainer">
+          <!-- Orders rendered by orders.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="modal fade" id="checkoutModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content bg-card">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title text-primary">Checkout Details</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="checkoutForm">
+            <div class="mb-3">
+              <label for="contactNumber" class="form-label">Contact Number</label>
+              <input type="tel" class="form-control" id="contactNumber" required placeholder="e.g. 0300 1234567">
+            </div>
+            <div class="mb-3">
+              <label for="deliveryAddress" class="form-label">Delivery Address</label>
+              <textarea class="form-control" id="deliveryAddress" rows="2" required placeholder="Enter your full address..."></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="paymentMethod" class="form-label">Payment Method</label>
+              <select class="form-select" id="paymentMethod" required>
+                <option value="Cash on Delivery">Cash on Delivery</option>
+                <option value="Credit/Debit Card">Credit/Debit Card</option>
+              </select>
+            </div>
+            
+            <!-- Card Details (Hidden by default) -->
+            <div id="cardDetailsSection" class="d-none border p-3 rounded mb-3 bg-light text-dark">
+              <h6 class="mb-3">Card Information</h6>
+              <div class="mb-2">
+                <input type="text" class="form-control" placeholder="Card Number (xxxx-xxxx-xxxx-xxxx)" id="cardNumber">
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <input type="text" class="form-control" placeholder="MM/YY" id="cardExpiry">
+                </div>
+                <div class="col-6">
+                  <input type="text" class="form-control" placeholder="CVV" id="cardCvv">
+                </div>
+              </div>
+            </div>
+            
+            <button type="button" id="confirmCheckoutBtn" class="btn btn-primary w-100">Confirm Order</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/orders.js"></script>
+</body>
+</html>
