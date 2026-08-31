@@ -1,9 +1,24 @@
-# Restaurant Full Stack Application - L'Étoile d'Or
+# Restaurant Full Stack Application - Shiznia Roasters
+
+## Student Details
+- **Name:** [Write Your Name Here - e.g. Shizal]
+- **Registration Number:** [Write Your Reg No Here]
+
+## Screenshots
+### Desktop View
+![Desktop View](images/desktop_screenshot.png)
+
+### Mobile/Phone View
+![Phone View](images/phone_screenshot.png)
+
+*(Note: Replace `images/desktop_screenshot.png` and `images/phone_screenshot.png` with your actual screenshot files in the `images` folder, or just drag and drop the images directly into GitHub!)*
+
+---
 
 This is a Full Stack Web Application built for the CloudExify Summer Internship (Month 2, Project 4). It features a customer-facing ordering panel and a secure admin dashboard, powered by Supabase.
 
 ## Restaurant Concept
-**Theme & Style:** Fine Dining (L'Étoile d'Or)
+**Theme & Style:** Shiznia Roasters
 **Mood:** Premium / Sophisticated
 
 ## Features (All 4 Mandatory Mechanics Implemented)
