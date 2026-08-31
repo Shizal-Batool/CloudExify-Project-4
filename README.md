@@ -1,19 +1,8 @@
 # Restaurant Full Stack Application - Shiznia Roasters
 
 ## Student Details
-- **Name:** [Write Your Name Here - e.g. Shizal]
-- **Registration Number:** [Write Your Reg No Here]
-
-## Screenshots
-### Desktop View
-![Desktop View](images/desktop_screenshot.png)
-
-### Mobile/Phone View
-![Phone View](images/phone_screenshot.png)
-
-*(Note: Replace `images/desktop_screenshot.png` and `images/phone_screenshot.png` with your actual screenshot files in the `images` folder, or just drag and drop the images directly into GitHub!)*
-
----
+- **Name:** Shizal Batool
+- **Registration Number:** CX-INT-2026-GEN-0239
 
 This is a Full Stack Web Application built for the CloudExify Summer Internship (Month 2, Project 4). It features a customer-facing ordering panel and a secure admin dashboard, powered by Supabase.
 
@@ -45,3 +34,11 @@ Simply open `index.html` in a web browser. Note: For `sessionStorage` and some S
 ## Common Features
 - **User Panel**: Live menu from Supabase, Cart powered by `sessionStorage`, My Orders history.
 - **Admin Panel**: Live dashboard stats, Orders table with status updates, Menu manager to add/toggle/delete items.
+
+
+## Screenshots
+### Desktop View
+![Desktop View](images/desktop_screenshot.jpeg)
+
+### Mobile/Phone View
+![Phone View](images/phone_screenshot.jpeg)
