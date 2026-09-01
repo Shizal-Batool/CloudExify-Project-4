@@ -4,6 +4,9 @@
 - **Name:** Shizal Batool
 - **Registration Number:** CX-INT-2026-GEN-0239
 
+## Live Demo
+- **Live URL:** [https://cloud-exify-project-4-eight.vercel.app](https://cloud-exify-project-4-eight.vercel.app)
+
 This is a Full Stack Web Application built for the CloudExify Summer Internship (Month 2, Project 4). It features a customer-facing ordering panel and a secure admin dashboard, powered by Supabase.
 
 ## Restaurant Concept
