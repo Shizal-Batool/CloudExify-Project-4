@@ -1,4 +1,4 @@
-# Restaurant Full Stack Application - Waqish Roasters
+# Restaurant Full Stack Application - Aura Coffee & Bakehouse
 
 ## Student Details
 - **Name:** Shizal Batool
@@ -10,7 +10,7 @@
 This is a Full Stack Web Application built for the CloudExify Summer Internship (Month 2, Project 4). It features a customer-facing ordering panel and a secure admin dashboard, powered by Supabase.
 
 ## Restaurant Concept
-**Theme & Style:** Waqish Roasters
+**Theme & Style:** Aura Coffee & Bakehouse
 **Mood:** Premium / Sophisticated
 
 ## Features (All 4 Mandatory Mechanics Implemented)
